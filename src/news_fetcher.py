@@ -1,8 +1,9 @@
 import os
 from dotenv import load_dotenv
-
 load_dotenv()
+
 import requests
+
 
 class NewsFetcher:
     """This class is responsible for fetching news articles from GNews API"""
@@ -11,6 +12,7 @@ class NewsFetcher:
         self.api_key = os.getenv("GNEWS_API_KEY")
         self.base_url = "https://gnews.io/api/v4/top-headlines"
         self.categories = ["business", "technology", "entertainment", "sports", "nation"]
+
 
     def fetch_articles(self, max_articles = 4):
         """Get articles from GNews API"""
@@ -29,6 +31,16 @@ class NewsFetcher:
 
             response = requests.get(self.base_url, params=params)
             data = response.json().get("articles", [])
-            all_articles.extend(data)
+
+
+
+            for art in data:
+                all_articles.append(
+                    {
+                        "title": art.get("title"),
+                        "url": art.get("url"),
+                        "source": art.get("source", {}).get("name", "Unknown"),
+                    }
+                )
 
         return all_articles
