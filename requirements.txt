@@ -7,3 +7,4 @@ tensorflow
 wordcloud
 ipykernel
 langchain
+boto3
