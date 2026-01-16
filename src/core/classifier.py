@@ -1,5 +1,5 @@
-from loader import ArtifactsLoader
-from preproces import Preprocessor
+from models.loader import ArtifactsLoader
+from core.preproces import Preprocessor
 import numpy as np
 
 loader = ArtifactsLoader()

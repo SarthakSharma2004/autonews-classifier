@@ -1,6 +1,6 @@
 import re
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from loader import ArtifactsLoader
+from models.loader import ArtifactsLoader
 
 
 loader = ArtifactsLoader()

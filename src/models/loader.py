@@ -4,7 +4,9 @@ import os
 
 
 # Path to the artifacts
-ARTIFACTS_PATH = "../artifacts"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ARTIFACTS_PATH = os.path.join(BASE_DIR, "..", "artifacts")
+
 
 
 
@@ -19,7 +21,7 @@ class ArtifactsLoader:
 
     def __init__(self):
         self.model_path = os.path.join(ARTIFACTS_PATH, "bilstm_tuned_model.keras")
-        self.tokenizer_path = os.path.join(ARTIFACTS_PATH, "tokenizer.pickle")
+        self.tokenizer_path = os.path.join(ARTIFACTS_PATH, "tokenizer.pkl")
         self.le_path = os.path.join(ARTIFACTS_PATH, "label_encoder.pkl")
 
     def load_trained_model(self):

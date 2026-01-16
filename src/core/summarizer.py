@@ -1,6 +1,6 @@
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
-from src.prompt.summarizer_prompt import get_summarizer_prompt
+from prompt.summarizer_prompt import get_summarizer_prompt
 import os 
 from dotenv import load_dotenv
 load_dotenv()
@@ -23,7 +23,7 @@ class SummarizeNews:
         """Generate Summary"""
 
         try:
-            
+
             response = self.chain.invoke({"input": text})
 
             return response.content
