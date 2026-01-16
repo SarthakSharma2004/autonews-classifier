@@ -1,8 +1,8 @@
 from datetime import datetime
-from core.news_fetcher import NewsFetcher
-from extractor import TextExtractor
-from classifier import Classifier
-from core.summarizer import SummarizeNews
+from src.core.news_fetcher import NewsFetcher
+from src.core.extractor import TextExtractor
+from src.core.classifier import Classifier
+from src.core.summarizer import SummarizeNews
 
 import json
 

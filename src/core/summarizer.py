@@ -1,6 +1,6 @@
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
-from prompt.summarizer_prompt import get_summarizer_prompt
+from src.prompt.summarizer_prompt import get_summarizer_prompt
 import os 
 from dotenv import load_dotenv
 load_dotenv()
