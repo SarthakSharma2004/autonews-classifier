@@ -21,26 +21,37 @@ class NewsFetcher:
 
         for category in self.categories:
 
-            params = {
-                "category": category ,
-                "lang": "en",
-                "country": "in",
-                "max": max_articles,
-                "apikey": self.api_key
-            }
+            try:
 
-            response = requests.get(self.base_url, params=params)
-            data = response.json().get("articles", [])
+                params = {
+                    "category": category ,
+                    "lang": "en",
+                    "country": "in",
+                    "max": max_articles,
+                    "apikey": self.api_key
+                }
+
+                response = requests.get(self.base_url, params=params)
+
+                if response.status_code != 200:
+                    continue
+
+                data = response.json().get("articles", [])
 
 
 
-            for art in data:
-                all_articles.append(
-                    {
-                        "title": art.get("title"),
-                        "url": art.get("url"),
-                        "source": art.get("source", {}).get("name", "Unknown"),
-                    }
-                )
+                for art in data:
+                    all_articles.append(
+                        {
+                            "title": art.get("title"),
+                            "url": art.get("url"),
+                            "source": art.get("source", {}).get("name", "Unknown"),
+                        }
+                    )
+
+
+            except Exception as e:
+                raise RuntimeError(f"Error fetching news: {e}")
+
 
         return all_articles

@@ -23,15 +23,23 @@ class Classifier:
         This predicts and returns the predicted label
         """
 
-        preprocessed = self.preprocessor.preprocess_text(text)
 
-        probs = self.model.predict(preprocessed)
-        
-        class_id = probs.argmax(axis = 1)[0]
+        if not text or not isinstance(text, str):
+            raise ValueError("Input text is empty or None")
 
-        label = self.le.inverse_transform([class_id])[0]
+        try: 
+            preprocessed = self.preprocessor.preprocess_text(text)
 
-        return label
+            probs = self.model.predict(preprocessed)
+            
+            class_id = probs.argmax(axis = 1)[0]
+
+            label = self.le.inverse_transform([class_id])[0]
+
+            return label
+
+        except Exception as e:
+            raise RuntimeError(f"Failed to predict: {e}")
 
 
     

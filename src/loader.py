@@ -25,17 +25,32 @@ class ArtifactsLoader:
     def load_trained_model(self):
         """This method loads the trained BiLSTM model"""
 
-        return load_model(self.model_path)
+        try:
+            return load_model(self.model_path)
+        
+        except Exception as e:
+            raise RuntimeError(f"Failed to load model: {e}")
+        
     
 
     def load_tokenizer(self):
         """This method loads the tokenizer"""
 
-        with open(self.tokenizer_path, "rb") as f:
-            return pickle.load(f)
+        try:
+
+            with open(self.tokenizer_path, "rb") as f:
+                return pickle.load(f)
+            
+        except Exception as e:
+            raise RuntimeError(f"Failed to load tokenizer: {e}")
         
         
     def load_label_encoder(self):
         """This method loads the label encoder"""
-        with open(self.le_path, "rb") as f:
-            return pickle.load(f)
+
+        try:
+            with open(self.le_path, "rb") as f:
+                return pickle.load(f)
+            
+        except Exception as e:
+            raise RuntimeError(f"Failed to load label encoder: {e}")
