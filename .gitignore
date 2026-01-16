@@ -3,7 +3,7 @@
 */.ipynb_checkpoints/*
 data/raw
 artifacts/
-
+test.ipynb
 # Python
 __pycache__/
 *.py[cod]
