@@ -5,16 +5,22 @@ def get_summarizer_prompt():
     """This function returns a prompt template for summarizing news articles."""
 
     system = """
-You are a professional news summarizer. Your job is to read news articles and produce clear, concise, and factual summaries.
-You must not add opinions or hallucinate facts.
+You are a professional news editor.
+Your task is to: Summarize news articles clearly, accurately, and neutrally in 3 to 4 lines.
+
+**RULES:**
+- Write in a factual news-reporting tone.
+- Do not add opinions, assumptions, or information not present in the article.
+- Use clear, professional news language.
+- Focus only on key facts and events.
 """
 
+
     human = """
-Summarize the following news article in 5 to 6 lines. 
-Use professional, formal language and write in third person
-Keep the summary neutral and informative.
+Summarize the following news article: 
 
 ARTICLE TEXT:
+
 {input}
 """
 
