@@ -6,6 +6,7 @@ artifacts/
 test.ipynb
 news_data.json
 
+
 # Python
 __pycache__/
 *.py[cod]
