@@ -18,7 +18,8 @@ def get_full_text(url):
             timeout=15
         )
         data = response.json()
-        
+
         return data.get("text", None)
+    
     except:
         return None

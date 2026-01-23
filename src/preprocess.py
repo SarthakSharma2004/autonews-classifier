@@ -1,4 +1,4 @@
-from src.loader import load_tokenizer, load_trained_model
+from src.loader import load_tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import re
 
