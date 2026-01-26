@@ -8,31 +8,46 @@ categories = ["business", "politics", "entertainment", "sports", "technology"]
 
 def fetch_news(max_articles=4):
     """This function fetches news articles from newsdata.io API."""
-
+    
+    if not API_KEY:
+        print("API KEY not found")
+        return {}
+    
     all_news = {} 
 
     for category in categories:
-        params = {
-            "apikey": API_KEY,
-            "category": category,
-            "language": "en",
-            "country": "in"
-        }
+        try: 
+            params = {
+                "apikey": API_KEY,
+                "category": category,
+                "language": "en",
+                "country": "in"
+            }
 
-        res = requests.get(BASE_URL, params=params)
+            res = requests.get(BASE_URL, params=params, timeout=10)
 
-        data = res.json().get("results", [])
+            if res.status_code != 200:
+                print(f"Error fetching news for category {category}: {res.status_code}")
+                continue
 
-        articles = [] 
+            data = res.json().get("results", [])
 
-        for item in data[:max_articles]:
-            articles.append({
-                "title": item.get("title"),
-                "url": item.get("link"),
-                "source": item.get("source_id")
-            })
+            
+            articles = [] 
 
-        all_news[category] = articles
+            for item in data[:max_articles]:
+
+                articles.append({
+                    "title": item.get("title"),
+                    "url": item.get("link"),
+                    "source": item.get("source_id")
+                })
+
+            all_news[category] = articles
+
+        except Exception as e:
+            print(f"Error fetching news for category {category}: {e}")
+            continue
 
     return all_news
 

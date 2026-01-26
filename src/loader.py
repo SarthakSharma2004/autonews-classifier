@@ -18,7 +18,7 @@ def load_trained_model():
 
 def load_tokenizer():
     try:
-        with open(os.path.join(ARTIFACTS_PATH, "tokenizer.pickle"), "rb") as f:
+        with open(os.path.join(ARTIFACTS_PATH, "tokenizer.pkl"), "rb") as f:
             return pickle.load(f)
     
     except Exception as e:
@@ -29,7 +29,7 @@ def load_tokenizer():
 
 def load_label_encoder():
     try:
-        with open(os.path.join(ARTIFACTS_PATH, "label_encoder.pickle"), "rb") as f:
+        with open(os.path.join(ARTIFACTS_PATH, "label_encoder.pkl"), "rb") as f:
             return pickle.load(f)
     
     except Exception as e:

@@ -7,10 +7,14 @@ label_encoder = load_label_encoder()
 
 def predict_class(text: str):
 
+    if model is None or label_encoder is None:
+        return "Unknown"
+
     preprocessed_text = preprocessor(text)
 
     if preprocessed_text is None:
         return "Unknown"
+    
     
     try:
         probs = model.predict(preprocessed_text)
@@ -21,7 +25,8 @@ def predict_class(text: str):
 
         return label
 
-    except Exception:
+    except Exception as e:
+        print(f"Prediction error: {e}")
         return "Unknown"
 
 
